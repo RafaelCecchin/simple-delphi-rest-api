@@ -4,14 +4,20 @@ program project;
 
 {$R *.res}
 
-uses
-  System.SysUtils;
+uses Horse, System.JSON;
+
+var
+  App: THorse;
 
 begin
-  try
-    { TODO -oUser -cConsole Main : Insert code here }
-  except
-    on E: Exception do
-      Writeln(E.ClassName, ': ', E.Message);
-  end;
+
+  App := THorse.Create();
+
+  App.Get('/ping',
+    procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
+    begin
+      Res.Send('pong');
+    end);
+
+  App.Listen(9000);
 end.
