@@ -21,6 +21,49 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Persons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/persons",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Person",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Rafael Francisco\",\r\n    \"last-name\" : \"Cecchin\",\r\n    \"birth\" : \"2001-09-01\",\r\n    \"gender\" : \"M\",\r\n    \"phone\" : \"00000000000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/person",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"person"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
