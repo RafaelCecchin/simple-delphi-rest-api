@@ -7,7 +7,9 @@ program project;
 uses
   Horse,
   Horse.Jhonson,
-  System.JSON;
+  Horse.Commons,
+  System.JSON,
+  System.SysUtils;
 
 var
   App: THorse;
@@ -38,7 +40,17 @@ begin
     begin
       Person := Req.Body<TJSONObject>.Clone as TJSONObject;
       Persons.AddElement(Person);
-      Res.Send<TJSONAncestor>(Person.Clone).Status(201);
+      Res.Send<TJSONAncestor>(Person.Clone).Status(THTTPStatus.Created);
+    end);
+
+  App.Delete('/person/:id',
+    procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
+    var
+      Id: Integer;
+    begin
+      Id := Req.Params.Items['id'].toInteger;
+      Persons.Remove(Id).Free;
+      Res.Send<TJSONAncestor>(Persons.Clone).Status(THTTPStatus.NoContent);
     end);
 
   App.Listen(9000);

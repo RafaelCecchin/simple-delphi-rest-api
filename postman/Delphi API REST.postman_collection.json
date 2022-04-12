@@ -40,7 +40,7 @@
 			"response": []
 		},
 		{
-			"name": "Person",
+			"name": "New Person",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -62,6 +62,14 @@
 						"person"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Person",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}
