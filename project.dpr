@@ -9,6 +9,7 @@ uses
   Horse.Jhonson,
   Horse.Commons,
   System.JSON,
+  Horse.BasicAuthentication,
   System.SysUtils;
 
 var
@@ -20,6 +21,12 @@ begin
   Persons := TJsonArray.Create();
 
   App.Use(Jhonson);
+
+  App.Use(HorseBasicAuthentication(
+  function(const AUsername, APassword: string): Boolean
+  begin
+    Result := AUsername.Equals('username') and APassword.Equals('1234567');
+  end));
 
   App.Get('/ping',
     procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)

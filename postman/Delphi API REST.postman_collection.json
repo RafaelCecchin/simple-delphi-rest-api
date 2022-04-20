@@ -84,6 +84,21 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "1234567",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "username",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
