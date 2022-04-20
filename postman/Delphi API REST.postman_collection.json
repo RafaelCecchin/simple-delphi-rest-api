@@ -54,12 +54,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/person",
+					"raw": "{{BASE_URL}}/persons",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
-						"person"
+						"persons"
 					]
 				}
 			},
@@ -68,8 +68,18 @@
 		{
 			"name": "Delete Person",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/persons/4",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"persons",
+						"4"
+					]
+				}
 			},
 			"response": []
 		}

@@ -33,7 +33,7 @@ begin
       Res.Send<TJSONAncestor>(Persons.Clone);
     end);
 
-  App.Post('/person',
+  App.Post('/persons',
     procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
     var
       Person: TJSONObject;
@@ -43,7 +43,7 @@ begin
       Res.Send<TJSONAncestor>(Person.Clone).Status(THTTPStatus.Created);
     end);
 
-  App.Delete('/person/:id',
+  App.Delete('/persons/:id',
     procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
     var
       Id: Integer;
