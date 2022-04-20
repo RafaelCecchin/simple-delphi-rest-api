@@ -6,6 +6,7 @@ program project;
 
 uses
   Horse,
+  Horse.Compression,
   Horse.Jhonson,
   Horse.Commons,
   System.JSON,
@@ -20,7 +21,8 @@ begin
   App := THorse.Create();
   Persons := TJsonArray.Create();
 
-  App.Use(Jhonson);
+  App.Use(Compression());
+  App.Use(Jhonson());
 
   App.Use(HorseBasicAuthentication(
   function(const AUsername, APassword: string): Boolean
@@ -30,8 +32,14 @@ begin
 
   App.Get('/ping',
     procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
+    var
+      I: Integer;
+      LPong: TJSONArray;
     begin
-      Res.Send('pong');
+      LPong := TJSONArray.Create;
+      for I := 0 to 1000 do
+        LPong.Add(TJSONObject.Create(TJSONPair.Create('ping', 'pong')));
+      Res.Send(LPong);
     end);
 
   App.Get('/persons',
