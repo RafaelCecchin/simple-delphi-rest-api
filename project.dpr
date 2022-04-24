@@ -6,11 +6,12 @@ program project;
 
 uses
   Horse,
+  Horse.BasicAuthentication, 
+  Horse.HandleException,
   Horse.Compression,
-  Horse.Jhonson,
+  Horse.Jhonson,               
   Horse.Commons,
-  System.JSON,
-  Horse.BasicAuthentication,
+  System.JSON,              
   System.SysUtils;
 
 var
@@ -23,6 +24,7 @@ begin
 
   App.Use(Compression());
   App.Use(Jhonson());
+  App.Use(HandleException);
 
   App.Use(HorseBasicAuthentication(
   function(const AUsername, APassword: string): Boolean
@@ -73,13 +75,7 @@ begin
     var
       LConteudo: TJSONObject;
     begin
-      try
-        raise Exception.Create('Exception example');
-      except on E: Exception do
-        Res.Send(TJSONObject.Create(TJSONPair.Create('error', E.Message))).Status(THTTPStatus.InternalServerError);
-      end;
-      
-      
+      raise EHorseException.New.Error('Exception example');
     end);
 
   App.Listen(9000);
