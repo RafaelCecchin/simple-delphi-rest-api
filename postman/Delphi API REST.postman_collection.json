@@ -82,6 +82,23 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Exception",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/exception",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"exception"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {

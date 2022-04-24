@@ -68,5 +68,19 @@ begin
       Res.Send<TJSONAncestor>(Persons.Clone).Status(THTTPStatus.NoContent);
     end);
 
+  App.Get('/exception',
+    procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
+    var
+      LConteudo: TJSONObject;
+    begin
+      try
+        raise Exception.Create('Exception example');
+      except on E: Exception do
+        Res.Send(TJSONObject.Create(TJSONPair.Create('error', E.Message))).Status(THTTPStatus.InternalServerError);
+      end;
+      
+      
+    end);
+
   App.Listen(9000);
 end.
